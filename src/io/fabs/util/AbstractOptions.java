@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import java.util.ArrayList;
 import java.util.Map;

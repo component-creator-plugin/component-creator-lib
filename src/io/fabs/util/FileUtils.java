@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -14,8 +14,6 @@ public class FileUtils {
         StringBuilder result = new StringBuilder("");
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream resourceStream = classLoader.getResourceAsStream(filePath);
-
-        System.out.println(filePath);
 
         File tmpFile = new File(filePath);
         if (tmpFile.exists()) {

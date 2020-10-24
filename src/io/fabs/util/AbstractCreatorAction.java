@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;

@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;

@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;

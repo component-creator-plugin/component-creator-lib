@@ -1,4 +1,4 @@
-package fabs.util;
+package io.fabs.util;
 
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
