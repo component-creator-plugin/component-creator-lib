@@ -22,13 +22,8 @@ public class TemplateRenderer {
     public static String transformTemplateName(String templateString, Map<String, Object> variables) {
         String[] parts = templateString.split("/");
         String fileName = parts[parts.length - 1];
-
-        Object[] keys = variables.keySet().toArray();
         fileName = fileName.replace(".mustache", "");
-
-        for (Object key : keys) {
-            fileName = fileName.replace("{{" + key.toString() + "}}", variables.get(key).toString());
-        }
-        return fileName;
+        Template tmpl = Mustache.compiler().compile(fileName);
+        return tmpl.execute(variables);
     }
 }

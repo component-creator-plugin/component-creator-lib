@@ -31,7 +31,6 @@ public class Creator implements Runnable {
 
     protected void writeFiles() throws IOException {
         FileUtils utils = new FileUtils();
-        TemplateRenderer renderer = new TemplateRenderer();
         VirtualFile componentDirectory = directory.createChildDirectory(directory, directoryName);
         Map<String, Object> variablemap = options.getTemplateVariables();
 
@@ -39,7 +38,8 @@ public class Creator implements Runnable {
 
         for (int i = 0; i < files.length; i++) {
             String file = Paths.get(files[i]).toString();
-            utils.writeFile(renderer.render(file, variablemap), componentDirectory.createChildData(componentDirectory, TemplateRenderer.transformTemplateName(file, variablemap)));
+            String templateName = TemplateRenderer.transformTemplateName(file, variablemap);
+            utils.writeFile(TemplateRenderer.render(file, variablemap), componentDirectory.createChildData(componentDirectory, templateName));
         }
     }
 

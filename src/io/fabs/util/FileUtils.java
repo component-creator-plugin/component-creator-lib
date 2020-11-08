@@ -31,7 +31,7 @@ public class FileUtils {
         return result.toString();
     }
 
-    public void writeFile(String content, VirtualFile destinationFile) throws IOException {
+    public static void writeFile(String content, VirtualFile destinationFile) throws IOException {
         destinationFile.setBinaryContent(content.getBytes());
     }
 }
