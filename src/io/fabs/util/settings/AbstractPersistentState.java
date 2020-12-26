@@ -1,4 +1,4 @@
-package io.fabs.util;
+package io.fabs.util.settings;
 
 import com.intellij.openapi.components.PersistentStateComponent;
 import org.jdom.Element;

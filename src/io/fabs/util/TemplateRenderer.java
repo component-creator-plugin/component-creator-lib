@@ -10,7 +10,7 @@ public class TemplateRenderer {
     /**
      * Render a template
      */
-    public static String render(String file, Map<String, Object> context) throws FileNotFoundException {
+    public static String render(String file, Map<String, String> context) throws FileNotFoundException {
         FileUtils utils = new FileUtils();
         Template tmpl = Mustache.compiler().compile(utils.getContent(file));
         return tmpl.execute(context);
@@ -19,7 +19,7 @@ public class TemplateRenderer {
     /**
      * Transform a filename
      */
-    public static String transformTemplateName(String templateString, Map<String, Object> variables) {
+    public static String transformTemplateName(String templateString, Map<String, String> variables) {
         String[] parts = templateString.split("/");
         String fileName = parts[parts.length - 1];
         fileName = fileName.replace(".mustache", "");

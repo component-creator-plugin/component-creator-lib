@@ -1,4 +1,6 @@
-package io.fabs.util;
+package io.fabs.util.settings;
+
+import io.fabs.util.AbstractOptions;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

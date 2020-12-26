@@ -3,7 +3,6 @@ package io.fabs.util;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Map;
 
@@ -20,7 +19,7 @@ public class Creator implements Runnable {
         this.options = options;
     }
 
-    public void create() throws IOException {
+    public void create() throws Exception {
         VirtualFile existingDirectory = VfsUtil.findRelativeFile(directory, componentName);
         if (existingDirectory != null) {
             return;
@@ -29,17 +28,21 @@ public class Creator implements Runnable {
         this.writeFiles();
     }
 
-    protected void writeFiles() throws IOException {
-        FileUtils utils = new FileUtils();
+    protected void writeFiles() throws Exception {
         VirtualFile componentDirectory = directory.createChildDirectory(directory, directoryName);
-        Map<String, Object> variablemap = options.getTemplateVariables();
+        Map<String, String> variableMap = options.getTemplateVariables();
 
         String[] files = options.getFileList();
 
-        for (int i = 0; i < files.length; i++) {
-            String file = Paths.get(files[i]).toString();
-            String templateName = TemplateRenderer.transformTemplateName(file, variablemap);
-            utils.writeFile(TemplateRenderer.render(file, variablemap), componentDirectory.createChildData(componentDirectory, templateName));
+        for (String filePath : files) {
+            String file = Paths.get(filePath).toString();
+            String templateName = TemplateRenderer.transformTemplateName(file, variableMap);
+            try {
+                String content = TemplateRenderer.render(file, variableMap);
+                FileUtils.writeFile(content, componentDirectory.createChildData(componentDirectory, templateName));
+            } catch (Exception e) {
+                throw new Exception("" + (e.getMessage()) + " for file " + file, e.fillInStackTrace());
+            }
         }
     }
 
@@ -47,7 +50,7 @@ public class Creator implements Runnable {
     public void run() {
         try {
             this.create();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

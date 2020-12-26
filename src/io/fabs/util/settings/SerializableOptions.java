@@ -1,4 +1,4 @@
-package io.fabs.util;
+package io.fabs.util.settings;
 
 import org.jdom.Element;
 

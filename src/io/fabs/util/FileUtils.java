@@ -10,7 +10,7 @@ public class FileUtils {
     /**
      * Get the file content
      */
-    public String getContent(String filePath) throws FileNotFoundException {
+    public  String getContent(String filePath) throws FileNotFoundException {
         StringBuilder result = new StringBuilder("");
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream resourceStream = classLoader.getResourceAsStream(filePath);
@@ -33,5 +33,10 @@ public class FileUtils {
 
     public static void writeFile(String content, VirtualFile destinationFile) throws IOException {
         destinationFile.setBinaryContent(content.getBytes());
+    }
+
+    public static boolean fileExists(String filePath) {
+        File tmpDir = new File(filePath);
+        return tmpDir.exists();
     }
 }
